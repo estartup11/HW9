@@ -1,4 +1,10 @@
 library(DT)
 library(ggplot2)
+library(shiny)
+library(xgboost)
+library(tidyverse)
+library(DiagrammeR)
+library(data.table)
 
-load("inst/data/latestGames.Rdata")
+
+IrisModel<-xgb.load("iris.model")

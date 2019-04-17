@@ -1,27 +1,48 @@
-## ui.R ##
 library(shinydashboard)
 
 
 dashboardPage(
   dashboardHeader(),
   dashboardSidebar(
-    selectInput(
-      "team"
-      , "Team:"
-      , choices = sort(latestGames$Team)
-      , selected = "Utah")
+    numericInput(
+      "sep.length"
+      , "Sepal Length:"
+      , 7)
+    ,
+    numericInput(
+      "sep.width"
+      ,'Sepal Width:'
+      ,3)
+    ,
+    numericInput(
+      "p.length"
+      ,'Petal Length:'
+      ,4)
+    ,
+    numericInput(
+      "p.width"
+      ,'Petal Width:'
+      ,.7)
   ),
   dashboardBody(
     fluidRow(
-      valueBoxOutput("AvePoints", width = 3)
-      ,valueBoxOutput("AvePA", width = 3)
-      ,valueBoxOutput("Wins", width = 3)
-      ,valueBoxOutput("Losses", width = 3)
-    )
-    ,fluidRow(
-      box(DT::dataTableOutput("table"), width = 12)
+      box(DT::dataTableOutput("predictions"))
       # ,box(plotOutput("graph"))
+    ),
+    fluidRow(
+      tabPanel( 'Plot', plotOutput('scatter'))
+    ),
+    fluidRow(
+      tabPanel("Plot", plotOutput("den1"))
+    ),
+    fluidRow(
+      tabPanel("Plot", plotOutput("den2"))
+    ),
+    fluidRow(
+      tabPanel("Plot", plotOutput("den3"))
+    ) ,
+    fluidRow(
+      tabPanel("Plot", plotOutput("den4"))
     )
   )
 )
-   
