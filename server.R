@@ -14,7 +14,8 @@ server <- function(input, output) {
   output$predictions <- DT::renderDataTable({
     data.frame(
       Iris = c("setosa", "versicolor", "virginica")
-      ,Probability = predict(IrisModel, as.matrix(newPredict())) )
+      ,Probability = sort(predict(IrisModel, as.matrix(newPredict())), decreasing=TRUE)
+    )
     
   })
   output$scatter<-renderPlot({
